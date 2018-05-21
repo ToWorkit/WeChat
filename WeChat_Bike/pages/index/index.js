@@ -116,10 +116,10 @@ Page({
         success: function (r) {
           //扫描成功获取二维码的信息
           var code = r.result;
-          console.log(code)
+          // console.log(code)
           //向后台发送请求
           wx.request({
-            //method: 'POST',
+            method: 'POST',
             url: 'http://localhost:8888/bike', //仅为示例，并非真实的接口地址
             data: {
               qrCode: code,
