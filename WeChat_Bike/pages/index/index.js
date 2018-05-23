@@ -119,7 +119,7 @@ Page({
           // console.log(code)
           //向后台发送请求
           wx.request({
-            method: 'POST',
+            // method: 'POST',
             url: 'http://localhost:8888/bike', //仅为示例，并非真实的接口地址
             data: {
               qrCode: code,

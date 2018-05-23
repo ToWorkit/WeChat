@@ -1,9 +1,7 @@
-package com.wechat.wcbike.boot.pojo;
+package cn.wcbikeServer.bike.pojo;
 
-/**
- * 需要的数据
- */
 public class Bike {
+
     private Long id;
 
     private int status;
@@ -22,22 +20,6 @@ public class Bike {
         this.id = id;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getQrCode() {
-        return qrCode;
-    }
-
-    public void setQrCode(String qrCode) {
-        this.qrCode = qrCode;
-    }
-
     public Double getLatitude() {
         return latitude;
     }
@@ -54,12 +36,26 @@ public class Bike {
         this.longitude = longitude;
     }
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
+    public String getQrCode() {
+        return qrCode;
+    }
+
+    public void setQrCode(String qrCode) {
+        this.qrCode = qrCode;
+    }
+
     @Override
     public String toString() {
         return "Bike{" +
                 "id=" + id +
-                ", status=" + status +
-                ", qrCode='" + qrCode + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 '}';
