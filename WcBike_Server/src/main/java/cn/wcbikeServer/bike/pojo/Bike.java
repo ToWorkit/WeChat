@@ -1,5 +1,8 @@
 package cn.wcbikeServer.bike.pojo;
 
+/**
+ * 需要的数据
+ */
 public class Bike {
 
     private Long id;
