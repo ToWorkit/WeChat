@@ -163,7 +163,26 @@ Page({
             },
             success: function () {
               //向后台发送请求，将单车查找出来
-              console.log(111)
+              wx.request({
+                url: "http://localhost:8888/bikes",
+                method: 'GET',
+                success: function (res) {
+                  const bikes = res.data.map((item) => {
+                    return {
+                      id: item.id,
+                      iconPath: "/image/bike.png",
+                      width: 35,
+                      height: 40,
+                      latitude: item.latitude,
+                      longitude: item.longitude
+                    };
+                  });
+                  // 修改data里面的markers
+                  that.setData({
+                    markers: bikes
+                  });
+                }
+              })
             }
           })
         }

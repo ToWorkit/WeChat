@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * 根据数据库的类型操作来保存数据
  */
@@ -35,5 +37,11 @@ public class BikeServiceImpl implements BikeService {
     public void save(String bike) {
         // 保存到bike集合
         mongoTemplate.save(bike, "bike");
+    }
+
+    @Override
+    public List<Bike> findAll() {
+        // mongo中查找
+        return mongoTemplate.findAll(Bike.class, "bike");
     }
 }

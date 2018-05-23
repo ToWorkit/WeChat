@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 // 请求控制器 (来自 /bike 接口)
 @Controller
 public class BikeController {
@@ -47,7 +49,8 @@ public class BikeController {
     @GetMapping("/bikes")
     @ResponseBody
     public List<Bike> findAll() {
-        list<Bike> bikes = bikeService.findAll();
+        // 集合
+        List<Bike> bikes = bikeService.findAll();
         return bikes;
     }
 
