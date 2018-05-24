@@ -27,6 +27,8 @@ Page({
       success: function (res) {
         var lat = res.latitude;
         var log = res.longitude;
+        // 查找附件的单车
+        that.getBikes();
         //console.log("纬度" + lat + "经度" + log)
         that.setData({
           latitude: lat,
@@ -163,26 +165,7 @@ Page({
             },
             success: function () {
               //向后台发送请求，将单车查找出来
-              wx.request({
-                url: "http://localhost:8888/bikes",
-                method: 'GET',
-                success: function (res) {
-                  const bikes = res.data.map((item) => {
-                    return {
-                      id: item.id,
-                      iconPath: "/image/bike.png",
-                      width: 35,
-                      height: 40,
-                      latitude: item.latitude,
-                      longitude: item.longitude
-                    };
-                  });
-                  // 修改data里面的markers
-                  that.setData({
-                    markers: bikes
-                  });
-                }
-              })
+              that.getBikes();
             }
           })
         }
@@ -190,6 +173,32 @@ Page({
     }
   },
 
+  /**
+   * 获取单车的方法
+   */
+  getBikes: function () {
+    let that = this;
+    wx.request({
+      url: "http://localhost:8888/bikes",
+      method: 'GET',
+      success: function (res) {
+        const bikes = res.data.map((item) => {
+          return {
+            id: item.id,
+            iconPath: "/image/bike.png",
+            width: 35,
+            height: 40,
+            latitude: item.latitude,
+            longitude: item.longitude
+          };
+        });
+        // 修改data里面的markers
+        that.setData({
+          markers: bikes
+        });
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
