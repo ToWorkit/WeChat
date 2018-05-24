@@ -9,6 +9,30 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
   */
 object MongoSparkSQL {
 
+  def main(args: Array[String]): Unit = {
+    val session = SparkSession.builder()
+      .master("local")
+      .appName("MongoSPSQL")
+      .config("spark.mongodb.input.uri", "mongodb://bike:bike@192.168.187.111:27017/bike.logs") // 数据源
+      .config("spark.mongodb.output.uri", "mongodb://bike:bike@192.168.187.111:27017/bike.result") // 结果输出
+      .getOrCreate()
+
+    val df: DataFrame = MongoSpark.load(session)
+    // sql语句操作必须创建视图
+    df.createTempView("v_logs")
+
+    // pv uv
+//    val pv = session.sql("select count(*) pv from v_logs")
+//    val uv = session.sql("select count(distinct openid) uv from v_logs")
+
+//    pv.show()
+//    uv.show()
+    // 存入mongo
+    val result = session.sql("select count(*) pv, count(distinct openid) uv from v_Logs")
+    MongoSpark.save(result)
+
+    session.stop()
+  }
 //  def main(args: Array[String]): Unit = {
 //
 //    val session = SparkSession.builder()

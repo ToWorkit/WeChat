@@ -30,6 +30,8 @@ object MongoSparkRDD {
     }).distinct().count() // 去重
 
     println(pv + "---" + uv)
+
+    sc.stop()
   }
 
 //  def main(args: Array[String]): Unit = {
