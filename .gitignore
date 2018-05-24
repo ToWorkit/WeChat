@@ -5,6 +5,9 @@ target
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 
+/WcBike_Server
+/niubike
+
 ### STS ###
 .apt_generated
 .classpath
