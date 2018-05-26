@@ -217,7 +217,7 @@ Page({
         //发送request向mongo中添加数据（添加一条文档（json））
         wx.request({
           //用POST方式请求es可以只指定index和type，不用指定id
-          url: "http://localhost:8888/log/ready",
+          url: "http://192.168.187.116/kafka/user",
           data: {
             time: new Date(),
             openid: openid,
