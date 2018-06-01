@@ -26,6 +26,27 @@ App({
     })
   },
   globalData: {
+    openid: "",
+    status: 0,
+    balance: 0, //余额
     userInfo: null
   }
 })
+
+function getInfoByOpenid(openid) {
+  wx.request({
+    url: "http://localhost:8888/phoneNum/" + openid,
+    success: function (res) {
+      var user = res.data;
+      if (user) {
+        var phoneNum = user.phoneNum;
+        var status = user.status;
+        getApp().globalData.phoneNum = phoneNum;
+        getApp().globalData.status = status;
+        //把用户的openid保存到本地
+        wx.setStorageSync('phoneNum', phoneNum);
+        wx.setStorageSync('status', status);
+      }
+    }
+  })
+}
